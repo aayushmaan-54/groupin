@@ -1,0 +1,21 @@
+{
+  "name": "groupin",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "docker:dev": "docker compose --profile dev up --build",
+    "docker:client:dev": "docker compose --profile dev up --build client-dev",
+    "docker:client:dev:sh": "docker compose exec client-dev sh",
+    "docker:server:dev": "docker compose --profile dev up --build server-dev",
+    "docker:server:dev:sh": "docker compose exec server-dev sh",
+    "docker:dev:down": "docker compose --profile dev down --remove-orphans",
+    "docker:dev:clean": "docker compose --profile dev down --rmi all",
+    "docker:prod": "docker compose --profile prod up --build",
+    "docker:client:prod": "docker compose --profile prod up --build client-prod",
+    "docker:client:prod:sh": "docker compose exec client-prod sh",
+    "docker:server:prod": "docker compose --profile prod up --build server-prod",
+    "docker:server:prod:sh": "docker compose exec server-prod sh",
+    "docker:prod:down": "docker compose --profile prod down --remove-orphans",
+    "docker:prod:clean": "docker compose --profile prod down --rmi all"
+  }
+}

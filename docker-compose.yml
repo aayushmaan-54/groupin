@@ -1,0 +1,78 @@
+services:
+  # Client dev
+  client-dev:
+    profiles: ["dev"]
+    build:
+      context: ./client
+      target: dev
+    ports:
+      - 5173:5173
+    volumes:
+      - ./client:/app:delegated
+      - /app/node_modules
+    env_file:
+      - ./client/.env
+    environment:
+      - NODE_ENV=development
+    stdin_open: true
+    tty: true
+    networks:
+      - app-network
+
+  # Client prod
+  client-prod:
+    profiles: ["prod"]
+    build:
+      context: ./client
+      target: prod
+    ports:
+      - 5000:5000
+    env_file:
+      - ./client/.env
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
+    networks:
+      - app-network
+
+  # Server Dev
+  server-dev:
+    profiles: ["dev"]
+    build:
+      context: ./server
+      target: dev
+    ports:
+      - 3000:3000
+    volumes:
+      - ./server:/app:delegated
+      - /app/node_modules
+    env_file:
+      - ./server/.env
+    environment:
+      - NODE_ENV=development
+      - LOG_LEVEL=debug
+    stdin_open: true
+    tty: true
+    networks:
+      - app-network
+
+  # Server Prod
+  server-prod:
+    profiles: ["prod"]
+    build:
+      context: ./server
+      target: prod
+    ports:
+      - 3000:3000
+    env_file:
+      - ./server/.env
+    environment:
+      - NODE_ENV=production
+      - LOG_LEVEL=info
+    restart: unless-stopped
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
