@@ -27,8 +27,9 @@ Groupin is built around three pillars:
 - Express.js
 - PostgreSQL (Supabase)
 - TypeScript
-- compression, cors, express-rate-limit, helmet, hpp, pino
+- compression, cors, express-rate-limit, helmet, hpp, pino, ms, cookie-parser, dotenv
 - Zod
+- Jose, @node-rs/argon2
 
 ---
 
