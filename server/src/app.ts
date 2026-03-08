@@ -1,3 +1,4 @@
+import "dotenv/config";
 import express from "express";
 import helmet from "helmet";
 import cors from "cors";
@@ -13,7 +14,7 @@ import {
   routeNotFoundHandler,
 } from "./middleware/error-handler.middleware";
 import router from "./router";
-import "dotenv/config";
+import cookieParser from "cookie-parser";
 
 const app = express();
 
@@ -25,7 +26,8 @@ app.use(
   cors({
     origin: (origin, cb) => {
       if (!origin) return cb(null, true); // non-browser clients
-      if (CONFIG.cors.origin.includes(origin)) return cb(null, true);
+      if (CONFIG.isDev || CONFIG.cors.origin.includes(origin))
+        return cb(null, true);
       else return cb(new Error(`CORS: origin ${origin} not allowed`));
     },
     credentials: true,
@@ -35,6 +37,7 @@ app.use(
 // Req. Parsing
 app.use(express.json({ limit: CONFIG.server.bodyLimit }));
 app.use(express.urlencoded({ extended: true, limit: CONFIG.server.bodyLimit }));
+app.use(cookieParser());
 
 app.use(hpp()); // Prevent HTTP parameter pollution
 app.use(compression({ threshold: "10kb" }));

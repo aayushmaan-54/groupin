@@ -32,6 +32,16 @@ const CONFIG = {
       maxReq: 100,
     },
   },
+
+  jwt: {
+    secret: process.env.JWT_SECRET,
+    refreshTokenTTL: process.env.REFRESH_TOKEN_TTL,
+    accessTokenTTL: process.env.ACCESS_TOKEN_TTL,
+  },
+
+  auth: {
+    refreshTokenCookieName: isProd ? "__Host-refresh_token" : "refresh_token",
+  },
 } as const;
 
 export default CONFIG;

@@ -13,5 +13,9 @@ declare namespace NodeJS {
       | "silent";
     PORT: number;
     TRUST_PROXY: number;
+    JWT_SECRET: string;
+    ACCESS_TOKEN_TTL: string;
+    REFRESH_TOKEN_TTL: string;
+    ENCRYPTION_KEY: string;
   }
 }
