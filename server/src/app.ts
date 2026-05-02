@@ -55,6 +55,8 @@ app.get("/ping", (_req, res) => {
     status: "🟢 PONG",
     uptime: process.uptime(),
     timestamp: new Date().toISOString(),
+    // await client.query('SELECT version()')
+    // result.rows[0].version
   });
 });
 

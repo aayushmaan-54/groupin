@@ -17,5 +17,7 @@ declare namespace NodeJS {
     ACCESS_TOKEN_TTL: string;
     REFRESH_TOKEN_TTL: string;
     ENCRYPTION_KEY: string;
+    NEONDB_POLL_URL: string;
+    NEONDB_URL: string;
   }
 }

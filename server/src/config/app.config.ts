@@ -42,6 +42,11 @@ const CONFIG = {
   auth: {
     refreshTokenCookieName: isProd ? "__Host-refresh_token" : "refresh_token",
   },
+
+  db: {
+    pollUrl: process.env.NEONDB_POLL_URL,
+    url: process.env.NEONDB_URL,
+  },
 } as const;
 
 export default CONFIG;
